@@ -1,3 +1,4 @@
+import 'package:fln/HomeScaffold.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,17 +27,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomeScaffold(title: 'Flutter Demo Home Page'),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-
-  MyHomePage({this.title});
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
