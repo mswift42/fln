@@ -1,5 +1,6 @@
 import 'package:fln/product.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProductsWidget extends StatelessWidget {
   final List<Product> products;
@@ -75,4 +76,62 @@ class ProductWidget extends StatelessWidget {
       )),
     );
   }
+}
+
+class _ProductBottomLine extends StatelessWidget {
+  const _ProductBottomLine({
+    Key key,
+    @required this.product,
+    @required this.condition,
+    @required this.textstyle,
+  }) : super(key: key);
+
+  final Product product;
+  final String condition;
+  final TextStyle textstyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            condition,
+            style: textstyle,
+          ),
+        ),
+        Text(
+          (product.price == null)
+              ? "0"
+              : product.price.toStringAsFixed(
+                  product.price.truncateToDouble() == product.price ? 0 : 2),
+          style: textstyle,
+          textAlign: TextAlign.right,
+        ),
+      ],
+    );
+  }
+}
+
+class ProductImage extends StatelessWidget {
+  final String imageurl;
+
+  ProductImage(this.imageurl);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 4.0, bottom: 4.0),
+      child: Image.network(
+        imageurl,
+        fit: BoxFit.contain,
+      ),
+    );
+  }
+}
+
+_launchUrl(String url) async {
+  await launch(url);
 }
