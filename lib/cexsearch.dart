@@ -13,4 +13,21 @@ class CexSearch {
   String prodUrl(String id) {
     return 'https://uk.webuy.com/product-detail?id=$id';
   }
+
+  Future<List<Product>> fetchProduct(String query, String storeid) async {
+    final url = url(query, storeid);
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      var decoded = json.decode(response.body) as List;
+      if (decoded != null) {
+        return decoded.map((i) => Product.fromJson(i)).toList();
+      } else {
+        return [];
+      }
+    } else {
+      throw Exception("Failed to load product");
+    }
+  }
 }
+
