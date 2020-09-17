@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:fln/product.dart' show Product;
 import 'package:fln/store.dart' show Store;
+import 'package:http/http.dart' as http;
 
 class CexSearch {
   final String query;
@@ -14,9 +18,9 @@ class CexSearch {
     return 'https://uk.webuy.com/product-detail?id=$id';
   }
 
-  Future<List<Product>> fetchProduct(String query, String storeid) async {
-    final url = url(query, storeid);
-    final response = await http.get(url);
+  Future<List<Product>> fetchProduct() async {
+    final cu = url(query, store.id);
+    final response = await http.get(cu);
 
     if (response.statusCode == 200) {
       var decoded = json.decode(response.body) as List;
@@ -30,4 +34,3 @@ class CexSearch {
     }
   }
 }
-
