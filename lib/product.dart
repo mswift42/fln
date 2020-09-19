@@ -7,16 +7,16 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     dynamic price;
-    if (json['price'] is int) {
-      price = json['price'].toDouble();
+    if (json['SellPrice'] is int) {
+      price = json['SellPrice'].toDouble();
     } else {
-      price = json['price'];
+      price = json['SellPrice'];
     }
     return Product(
-      json['title'],
-      json['thumbnail'],
+      json['BoxName'],
+      json['imageUrls']["large"],
       price,
-      json['url'],
+      json['BoxId'],
     );
   }
 }
