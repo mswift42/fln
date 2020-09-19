@@ -31,7 +31,7 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _ts = Theme.of(context).textTheme.body1;
+    final _ts = Theme.of(context).textTheme.bodyText2;
     final _prodtextline = product.title.split(',');
     final _des = _prodtextline[0];
     final _condition = (_prodtextline.length == 2) ? _prodtextline[1] : '?';
