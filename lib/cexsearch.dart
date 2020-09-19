@@ -11,7 +11,7 @@ class CexSearch {
   CexSearch({this.query, this.store});
 
   String url(String query, String storeid) {
-    return 'https://wss2.cex.uk.webuy.io/v3/boxes?q=$query&storeIds=[$store.location]&firstRecord=1&count=50&sortBy=sellprice&sortOrder=desc';
+    return 'https://wss2.cex.uk.webuy.io/v3/boxes?q=$query&storeIds=[${store.id}]&firstRecord=1&count=50&sortBy=sellprice&sortOrder=desc';
   }
 
   String prodUrl(String id) {
@@ -23,9 +23,11 @@ class CexSearch {
     final response = await http.get(cu);
 
     if (response.statusCode == 200) {
-      var decoded = json.decode(response.body) as List;
+      var decoded = json.decode(response.body);
+      print(decoded["response"]["data"]["boxes"] as List);
+      var jsonlist = decoded["response"]["data"]["boxes"] as List;
       if (decoded != null) {
-        return decoded.map((i) => Product.fromJson(i)).toList();
+        return jsonlist.map((i) => Product.fromJson(i)).toList();
       } else {
         return [];
       }
