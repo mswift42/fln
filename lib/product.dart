@@ -7,16 +7,16 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     dynamic price;
-    if (json['SellPrice'] is int) {
-      price = json['SellPrice'].toDouble();
+    if (json['sellPrice'] is int) {
+      price = json['sellPrice'].toDouble();
     } else {
-      price = json['SellPrice'];
+      price = json['sellPrice'];
     }
     return Product(
-      json['BoxName'],
+      json['boxName'],
       json['imageUrls']["large"],
       price,
-      json['BoxId'],
+      "https://uk.webuy.com/product-detail?id=${json['boxId']}",
     );
   }
 }
