@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:fln/cexsearch.dart';
+import 'package:fln/last_search.dart';
 import 'package:fln/product.dart';
 import 'package:fln/store.dart';
 import 'package:fln/widgets/Product.dart';
@@ -32,6 +33,7 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
+  final LastSearchService searchServie = LastSearchService();
   Store activeStore = _stores[0];
   String searchquery = "";
   Set<String> _lastSearches = Set();
@@ -69,6 +71,11 @@ class _SearchWidgetState extends State<SearchWidget> {
   void initState() {
     super.initState();
     controller.addListener(_setSearchQueryText);
+    searchServie.readSearches().then((List value) {
+      setState(() {
+        _lastSearches = Set.from(value) ?? Set();
+      });
+    });
   }
 
   void handleActiveStoreChanged(Store store) async {
