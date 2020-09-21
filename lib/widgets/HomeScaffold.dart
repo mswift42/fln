@@ -36,8 +36,8 @@ class _SearchWidgetState extends State<SearchWidget> {
   String searchquery = "";
   Set<String> _lastSearches = Set();
   static final _stores = [
-    Store("Rose Street", "54"),
-    Store("Cameron Toll", "3017"),
+    Store("Rose St.", "54"),
+    Store("Cam. Toll", "3017"),
     Store("Leith", "3115")
   ];
   final controller = TextEditingController();
@@ -131,12 +131,16 @@ class _SearchWidgetState extends State<SearchWidget> {
             ),
             padding: EdgeInsets.symmetric(vertical: 6.00, horizontal: 8.00),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _stores
-                .map((i) =>
-                    _radioWidget(i, activeStore, handleActiveStoreChanged))
-                .toList(),
+          Wrap(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: _stores
+                    .map((i) =>
+                        _radioWidget(i, activeStore, handleActiveStoreChanged))
+                    .toList(),
+              ),
+            ],
           ),
           LastSearchGrid(_handleDelete, _handlePillTap, _lastSearches.toList())
         ],
