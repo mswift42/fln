@@ -24,9 +24,9 @@ class CexSearch {
 
     if (response.statusCode == 200) {
       var decoded = json.decode(response.body);
-      print(decoded["response"]["data"]["boxes"] as List);
-      var jsonlist = decoded["response"]["data"]["boxes"] as List;
-      if (decoded != null) {
+      var dt = decoded["response"]["data"];
+      if (dt != null) {
+        var jsonlist = dt["boxes"] as List;
         return jsonlist.map((i) => Product.fromJson(i)).toList();
       } else {
         return [];
