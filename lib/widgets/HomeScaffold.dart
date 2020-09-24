@@ -47,6 +47,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   void _searchProduct(String inp) async {
     if (inp != '') {
       _lastSearches.add(inp);
+      searchServie.writeSearches(_lastSearches.toList());
       var cs = CexSearch(query: searchquery, store: activeStore);
       Navigator.of(context).push(
         new MaterialPageRoute(
