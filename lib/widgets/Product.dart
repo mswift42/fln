@@ -37,43 +37,45 @@ class ProductWidget extends StatelessWidget {
     final _condition = (_prodtextline.length == 2) ? _prodtextline[1] : '?';
     return GestureDetector(
       onTap: () => _launchUrl(product.url),
-      child: Card(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-                constraints: BoxConstraints(
-                  maxHeight: 200.0,
-                ),
-                child: ProductImage(product.thumbnail)),
-          ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 2.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Wrap(
-                    children: <Widget>[
-                      Text(
-                        _des,
-                        style: _ts,
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
+      child: Container(
+        child: Card(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: 200.0,
+                  ),
+                  child: ProductImage(product.thumbnail)),
+            ),
+            Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 2.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Wrap(
+                      children: <Widget>[
+                        Text(
+                          _des,
+                          style: _ts,
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              _ProductBottomLine(
-                product: product,
-                condition: _condition,
-                textstyle: _ts,
-              ),
-            ],
-          ),
-        ],
-      )),
+                _ProductBottomLine(
+                  product: product,
+                  condition: _condition,
+                  textstyle: _ts,
+                ),
+              ],
+            ),
+          ],
+        )),
+      ),
     );
   }
 }
@@ -134,4 +136,10 @@ class ProductImage extends StatelessWidget {
 
 _launchUrl(String url) async {
   await launch(url);
+}
+
+class ProductTile extends GridTile {
+  final Widget footer;
+  final Widget child;
+  ProductTile(this.footer, this.child) : super(footer: footer, child: child);
 }
