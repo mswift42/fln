@@ -37,45 +37,69 @@ class ProductWidget extends StatelessWidget {
     final _condition = (_prodtextline.length == 2) ? _prodtextline[1] : '?';
     return GestureDetector(
       onTap: () => _launchUrl(product.url),
-      child: Container(
-        child: Card(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                  constraints: BoxConstraints(
-                    maxHeight: 200.0,
-                  ),
-                  child: ProductImage(product.thumbnail)),
-            ),
-            Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 2.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Wrap(
-                      children: <Widget>[
-                        Text(
-                          _des,
-                          style: _ts,
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
+      child: ProductTile(
+          product: product, des: _des, ts: _ts, condition: _condition),
+    );
+  }
+}
+
+class ProductTile extends StatelessWidget {
+  const ProductTile({
+    Key key,
+    @required this.product,
+    @required String des,
+    @required TextStyle ts,
+    @required String condition,
+  })  : _des = des,
+        _ts = ts,
+        _condition = condition,
+        super(key: key);
+
+  final Product product;
+  final String _des;
+  final TextStyle _ts;
+  final String _condition;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Card(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+            child: Container(
+                constraints: BoxConstraints(
+                  maxHeight: 200.0,
+                ),
+                child: ProductImage(product.thumbnail)),
+          ),
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 2.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Wrap(
+                    children: <Widget>[
+                      Text(
+                        _des,
+                        style: _ts,
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
                   ),
                 ),
-                _ProductBottomLine(
-                  product: product,
-                  condition: _condition,
-                  textstyle: _ts,
-                ),
-              ],
-            ),
-          ],
-        )),
-      ),
+              ),
+              _ProductBottomLine(
+                product: product,
+                condition: _condition,
+                textstyle: _ts,
+              ),
+            ],
+          ),
+        ],
+      )),
     );
   }
 }
@@ -114,6 +138,17 @@ class _ProductBottomLine extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class ProductTileBar extends StatelessWidget {
+  final Product _product;
+
+  ProductTileBar(this._product);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridTileBar();
   }
 }
 
