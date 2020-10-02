@@ -137,9 +137,3 @@ class ProductImage extends StatelessWidget {
 _launchUrl(String url) async {
   await launch(url);
 }
-
-class ProductTile extends GridTile {
-  final Widget footer;
-  final Widget child;
-  ProductTile(this.footer, this.child) : super(footer: footer, child: child);
-}
