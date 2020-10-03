@@ -32,13 +32,9 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _ts = Theme.of(context).textTheme.bodyText2;
-    final _prodtextline = product.title.split(',');
-    final _des = _prodtextline[0];
-    final _condition = (_prodtextline.length == 2) ? _prodtextline[1] : '?';
     return GestureDetector(
       onTap: () => _launchUrl(product.url),
-      child: ProductTile(
-          product: product, des: _des, ts: _ts, condition: _condition),
+      child: ProductTile(product: product, ts: _ts),
     );
   }
 }
@@ -47,18 +43,12 @@ class ProductTile extends StatelessWidget {
   const ProductTile({
     Key key,
     @required this.product,
-    @required String des,
     @required TextStyle ts,
-    @required String condition,
-  })  : _des = des,
-        _ts = ts,
-        _condition = condition,
+  })  : _ts = ts,
         super(key: key);
 
   final Product product;
-  final String _des;
   final TextStyle _ts;
-  final String _condition;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +73,7 @@ class ProductTile extends StatelessWidget {
                   child: Wrap(
                     children: <Widget>[
                       Text(
-                        _des,
+                        product.description,
                         style: _ts,
                         textAlign: TextAlign.left,
                       ),
@@ -93,7 +83,7 @@ class ProductTile extends StatelessWidget {
               ),
               _ProductBottomLine(
                 product: product,
-                condition: _condition,
+                condition: product.condition,
                 textstyle: _ts,
               ),
             ],
@@ -154,8 +144,9 @@ class ProductTileBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridTileBar(
-      title: Text(_product.title),
+      title: Text(_product.description),
       subtitle: _productPrice(_product, _textStyle),
+      trailing: Text(_product.condition),
     );
   }
 }
