@@ -1,9 +1,12 @@
 class Product {
-  String title, thumbnail;
+  String description;
+  String condition;
+  String thumbnail;
   double price;
   String url;
 
-  Product(this.title, this.thumbnail, this.price, this.url);
+  Product(
+      this.description, this.condition, this.thumbnail, this.price, this.url);
 
   factory Product.fromJson(Map<String, dynamic> json) {
     dynamic price;
@@ -12,8 +15,13 @@ class Product {
     } else {
       price = json['sellPrice'];
     }
+    var title = json['boxName'].split(',');
+    var description = title[0];
+    var condition = (title.length == 2) ? title[1] : '?';
+
     return Product(
-      json['boxName'],
+      description,
+      condition,
       json['imageUrls']["large"],
       price,
       "https://uk.webuy.com/product-detail?id=${json['boxId']}",
