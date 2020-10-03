@@ -147,12 +147,16 @@ Text _productPrice(Product product, TextStyle textStyle) {
 
 class ProductTileBar extends StatelessWidget {
   final Product _product;
+  final TextStyle _textStyle;
 
-  ProductTileBar(this._product);
+  ProductTileBar(this._product, this._textStyle);
 
   @override
   Widget build(BuildContext context) {
-    return GridTileBar();
+    return GridTileBar(
+      title: Text(_product.title),
+      subtitle: _productPrice(_product, _textStyle),
+    );
   }
 }
 
