@@ -128,17 +128,21 @@ class _ProductBottomLine extends StatelessWidget {
             style: textstyle,
           ),
         ),
-        Text(
-          (product.price == null)
-              ? "0"
-              : product.price.toStringAsFixed(
-                  product.price.truncateToDouble() == product.price ? 0 : 2),
-          style: textstyle,
-          textAlign: TextAlign.right,
-        ),
+        _productPrice(product, textstyle),
       ],
     );
   }
+}
+
+Text _productPrice(Product product, TextStyle textStyle) {
+  return Text(
+    (product.price == null)
+        ? "0"
+        : product.price.toStringAsFixed(
+            product.price.truncateToDouble() == product.price ? 0 : 2),
+    style: textStyle,
+    textAlign: TextAlign.right,
+  );
 }
 
 class ProductTileBar extends StatelessWidget {
