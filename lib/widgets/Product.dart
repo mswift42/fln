@@ -32,9 +32,6 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _ts = Theme.of(context).textTheme.bodyText2;
-    final _prodtextline = product.title.split(',');
-    final _des = _prodtextline[0];
-    final _condition = (_prodtextline.length == 2) ? _prodtextline[1] : '?';
     return GestureDetector(
       onTap: () => _launchUrl(product.url),
       child: Card(
@@ -57,7 +54,7 @@ class ProductWidget extends StatelessWidget {
                   child: Wrap(
                     children: <Widget>[
                       Text(
-                        _des,
+                        product.description,
                         style: _ts,
                         textAlign: TextAlign.left,
                       ),
@@ -67,7 +64,7 @@ class ProductWidget extends StatelessWidget {
               ),
               _ProductBottomLine(
                 product: product,
-                condition: _condition,
+                condition: product.condition,
                 textstyle: _ts,
               ),
             ],
