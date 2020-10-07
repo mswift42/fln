@@ -83,7 +83,6 @@ class ProductTile extends StatelessWidget {
               ),
               _ProductBottomLine(
                 product: product,
-                condition: product.condition,
                 textstyle: _ts,
               ),
             ],
@@ -98,12 +97,10 @@ class _ProductBottomLine extends StatelessWidget {
   const _ProductBottomLine({
     Key key,
     @required this.product,
-    @required this.condition,
     @required this.textstyle,
   }) : super(key: key);
 
   final Product product;
-  final String condition;
   final TextStyle textstyle;
 
   @override
@@ -114,7 +111,7 @@ class _ProductBottomLine extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            condition,
+            product.condition,
             style: textstyle,
           ),
         ),
