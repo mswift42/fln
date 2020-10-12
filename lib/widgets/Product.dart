@@ -52,43 +52,29 @@ class ProductTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return _ProductCard(product: product, ts: _ts);
+  }
+}
+
+class _ProductCard extends StatelessWidget {
+  const _ProductCard({
+    Key key,
+    @required this.product,
+    @required TextStyle ts,
+  })  : _ts = ts,
+        super(key: key);
+
+  final Product product;
+  final TextStyle _ts;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      child: Card(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-                constraints: BoxConstraints(
-                  maxHeight: 200.0,
-                ),
-                child: ProductImage(product.thumbnail)),
-          ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 2.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Wrap(
-                    children: <Widget>[
-                      Text(
-                        product.description,
-                        style: _ts,
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              _ProductBottomLine(
-                product: product,
-                textstyle: _ts,
-              ),
-            ],
-          ),
-        ],
-      )),
+      color: Colors.black54,
+      child: GridTile(
+        child: ProductImage(product.thumbnail),
+        footer: ProductTileBar(product, _ts),
+      ),
     );
   }
 }
@@ -144,6 +130,7 @@ class ProductTileBar extends StatelessWidget {
       title: Text(_product.description),
       subtitle: _productPrice(_product, _textStyle),
       trailing: Text(_product.condition),
+      backgroundColor: Colors.black54,
     );
   }
 }
@@ -156,7 +143,6 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 4.0, bottom: 4.0),
       child: Image.network(
         imageurl,
         fit: BoxFit.contain,
