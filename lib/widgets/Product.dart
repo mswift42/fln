@@ -16,11 +16,14 @@ class ProductsWidget extends StatelessWidget {
         ),
       );
     }
-    return GridView.extent(
-        maxCrossAxisExtent: 320.0,
-        mainAxisSpacing: 2.0,
-        crossAxisSpacing: 1.0,
-        children: products.map((i) => ProductWidget(i)).toList());
+    return Container(
+      color: Colors.black87,
+      child: GridView.extent(
+          maxCrossAxisExtent: 320.0,
+          mainAxisSpacing: 2.0,
+          crossAxisSpacing: 1.0,
+          children: products.map((i) => ProductWidget(i)).toList()),
+    );
   }
 }
 
@@ -31,42 +34,52 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _ts = Theme.of(context).textTheme.bodyText2;
+    final _ts = TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.w300,
+      fontSize: 14.0,
+    );
+
     return GestureDetector(
       onTap: () => _launchUrl(product.url),
       child: Card(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Stack(
         children: <Widget>[
-          Expanded(
+          Container(
+              constraints: BoxConstraints(
+                maxHeight: 200.0,
+              ),
+              child: ProductImage(product.thumbnail)),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
             child: Container(
-                constraints: BoxConstraints(
-                  maxHeight: 200.0,
-                ),
-                child: ProductImage(product.thumbnail)),
-          ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 2.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Wrap(
-                    children: <Widget>[
-                      Text(
-                        product.description,
-                        style: _ts,
-                        textAlign: TextAlign.left,
+              color: Colors.black87,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 2.0, top: 10.0, bottom: 10.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Wrap(
+                        children: <Widget>[
+                          Text(
+                            product.description,
+                            style: _ts,
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  _ProductBottomLine(
+                    product: product,
+                    textstyle: _ts,
+                  ),
+                ],
               ),
-              _ProductBottomLine(
-                product: product,
-                textstyle: _ts,
-              ),
-            ],
+            ),
           ),
         ],
       )),
