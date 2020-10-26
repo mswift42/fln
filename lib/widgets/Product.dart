@@ -1,5 +1,6 @@
 import 'package:fln/product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProductsWidget extends StatelessWidget {
@@ -34,6 +35,7 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _height = MediaQuery.of(context).size.height;
     final _ts = TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.w300,
@@ -47,19 +49,22 @@ class ProductWidget extends StatelessWidget {
         children: <Widget>[
           Container(
               constraints: BoxConstraints(
-                maxHeight: 200.0,
+                maxHeight: _height,
               ),
               child: ProductImage(product.thumbnail)),
           Positioned(
             bottom: 0.0,
             left: 0.0,
+            right: 0.0,
+            top: _height / 3.0,
             child: Container(
               color: Colors.black87,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(
-                        left: 2.0, top: 10.0, bottom: 10.0),
+                    padding:
+                        const EdgeInsets.only(left: 2.0, top: 4.0, bottom: 4.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Wrap(
