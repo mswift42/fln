@@ -20,9 +20,9 @@ class ProductsWidget extends StatelessWidget {
     return Container(
       color: Colors.black87,
       child: GridView.extent(
-          maxCrossAxisExtent: 320.0,
-          mainAxisSpacing: 2.0,
-          crossAxisSpacing: 1.0,
+          maxCrossAxisExtent: 300.0,
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
           children: products.map((i) => ProductWidget(i)).toList()),
     );
   }
@@ -36,6 +36,7 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _height = MediaQuery.of(context).size.height;
+    var _width = MediaQuery.of(context).size.width;
     final _ts = TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.w300,
@@ -47,42 +48,46 @@ class ProductWidget extends StatelessWidget {
       child: Card(
           child: Stack(
         children: <Widget>[
-          Container(
-              constraints: BoxConstraints(
-                maxHeight: _height,
-              ),
-              child: ProductImage(product.thumbnail)),
+          ProductImage(product.thumbnail),
           Positioned(
             bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            top: _height / 3.0,
-            child: Container(
-              color: Colors.black87,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 2.0, top: 4.0, bottom: 4.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Wrap(
-                        children: <Widget>[
-                          Text(
-                            product.description,
-                            style: _ts,
-                            textAlign: TextAlign.left,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: 100.0,
+                minWidth: 200.0,
+                maxWidth: 320.0,
+                maxHeight: 300.0,
+              ),
+              child: FractionallySizedBox(
+                heightFactor: 0.25,
+                child: Container(
+                  color: Colors.black87,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 2.0, top: 4.0, bottom: 4.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Wrap(
+                            children: <Widget>[
+                              Text(
+                                product.description,
+                                style: _ts,
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                      _ProductBottomLine(
+                        product: product,
+                        textstyle: _ts,
+                      ),
+                    ],
                   ),
-                  _ProductBottomLine(
-                    product: product,
-                    textstyle: _ts,
-                  ),
-                ],
+                ),
               ),
             ),
           ),
