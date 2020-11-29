@@ -35,8 +35,6 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _height = MediaQuery.of(context).size.height;
-    var _width = MediaQuery.of(context).size.width;
     final _ts = TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.w300,
