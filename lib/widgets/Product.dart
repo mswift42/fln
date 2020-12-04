@@ -49,15 +49,15 @@ class ProductWidget extends StatelessWidget {
           ProductImage(product.thumbnail),
           Positioned(
             bottom: 0.0,
+            left: 0.0,
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                minHeight: 100.0,
-                minWidth: 200.0,
-                maxWidth: 320.0,
-                maxHeight: 300.0,
+                minHeight: 80.0,
+                minWidth: 150.0,
+                maxHeight: 400.0,
               ),
               child: FractionallySizedBox(
-                heightFactor: 0.25,
+                heightFactor: 0.20,
                 child: Container(
                   color: Colors.black87,
                   child: Column(
