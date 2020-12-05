@@ -53,7 +53,7 @@ class ProductWidget extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: 80.0,
-                minWidth: 150.0,
+                minWidth: 300.0,
                 maxHeight: 400.0,
               ),
               child: FractionallySizedBox(
@@ -66,17 +66,14 @@ class ProductWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 2.0, top: 4.0, bottom: 4.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Wrap(
-                            children: <Widget>[
-                              Text(
-                                product.description,
-                                style: _ts,
-                                textAlign: TextAlign.left,
-                              ),
-                            ],
-                          ),
+                        child: Wrap(
+                          children: <Widget>[
+                            Text(
+                              product.description,
+                              style: _ts,
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
                         ),
                       ),
                       _ProductBottomLine(
