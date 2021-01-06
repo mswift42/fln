@@ -53,11 +53,11 @@ class ProductWidget extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: 80.0,
-                minWidth: 300.0,
-                maxHeight: 400.0,
+                minWidth: 0.0,
+                maxHeight: 300.0,
               ),
               child: FractionallySizedBox(
-                heightFactor: 0.20,
+                heightFactor: 0.3,
                 child: Container(
                   color: Colors.black87,
                   child: Column(
@@ -105,14 +105,12 @@ class _ProductBottomLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            product.condition,
-            style: textstyle,
-          ),
+        Text(
+          product.condition,
+          style: textstyle,
+          textAlign: TextAlign.left,
         ),
         Text(
           (product.price == null)
