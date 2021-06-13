@@ -19,7 +19,6 @@ class CexSearch {
       'sortBy': 'sellprice',
       'sortOrder': 'desc'
     });
-    print(uri);
     return uri;
   }
 
