@@ -1,8 +1,8 @@
 class Product {
-  String description;
-  String condition;
-  String thumbnail;
-  double price;
+  String? description;
+  String? condition;
+  String? thumbnail;
+  double? price;
   String url;
 
   Product(

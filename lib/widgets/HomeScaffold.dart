@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScaffold extends StatelessWidget {
-  final String title;
+  final String? title;
 
   HomeScaffold({this.title});
 
@@ -19,7 +19,7 @@ class HomeScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title!),
       ),
       body: Center(
         child: SearchWidget(),
@@ -34,7 +34,7 @@ class SearchWidget extends StatefulWidget {
 
 class _SearchWidgetState extends State<SearchWidget> {
   final LastSearchService searchServie = LastSearchService();
-  Store activeStore = _stores[0];
+  Store? activeStore = _stores[0];
   String searchquery = "";
   Set<String> _lastSearches = Set();
   static final _stores = [
@@ -54,7 +54,7 @@ class _SearchWidgetState extends State<SearchWidget> {
           builder: (context) => Scaffold(
             appBar: AppBar(
                 title: Text(
-              "Showing $searchquery at ${activeStore.location}.",
+              "Showing $searchquery at ${activeStore!.location}.",
               textScaleFactor: 0.7,
             )),
             body: _showResultsBody(cs.fetchProduct()),
@@ -72,14 +72,14 @@ class _SearchWidgetState extends State<SearchWidget> {
   void initState() {
     super.initState();
     controller.addListener(_setSearchQueryText);
-    searchServie.readSearches().then((List value) {
+    searchServie.readSearches().then((List? value) {
       setState(() {
-        _lastSearches = Set.from(value) ?? Set();
+        _lastSearches = Set.from(value!) ?? Set();
       });
     });
   }
 
-  void handleActiveStoreChanged(Store store) async {
+  void handleActiveStoreChanged(Store? store) async {
     setState(() {
       activeStore = store;
     });
@@ -111,7 +111,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      var decoded = json.decode(response.body) as List;
+      var decoded = json.decode(response.body) as List?;
       if (decoded != null) {
         return decoded.map((i) => Product.fromJson(i)).toList();
       } else {
@@ -159,7 +159,7 @@ class _SearchWidgetState extends State<SearchWidget> {
 }
 
 Widget _radioWidget(
-    Store value, Store groupvalue, ValueChanged<Store> handler) {
+    Store value, Store? groupvalue, ValueChanged<Store?> handler) {
   return Row(
     children: <Widget>[
       Text(value.location),

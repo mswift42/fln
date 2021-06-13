@@ -21,7 +21,7 @@ class LastSearchService {
     return file.writeAsString(searches.join(','));
   }
 
-  Future<List<String>> readSearches() async {
+  Future<List<String>?> readSearches() async {
     try {
       final file = await _localFile;
 
