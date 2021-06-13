@@ -101,8 +101,9 @@ class _SearchWidgetState extends State<SearchWidget> {
     super.dispose();
   }
 
-  String prodUrl(String query, String storeid) {
-    return 'https://cxchecker.appspot.com/querycx?query=$query&location=$storeid';
+  Uri prodUrl(String query, String storeid) {
+    return Uri.https('cxchecker.appspot.com', '/querycx',
+        {'query': query, 'location': storeid});
   }
 
   Future<List<Product>> fetchProduct(String query, String storeid) async {
