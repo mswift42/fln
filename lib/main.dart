@@ -13,12 +13,13 @@ class MyApp extends StatelessWidget {
       title: "CexCheck",
       theme: ThemeData(
           primaryColor: Color.fromARGB(255, 223, 33, 39),
-          accentColor: Color.fromARGB(255, 206, 172, 122),
           textTheme: TextTheme(
             bodyText1: TextStyle(color: Colors.black87),
             bodyText2:
                 TextStyle(color: Colors.black54, fontWeight: FontWeight.w700),
-          )),
+          ),
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(secondary: Color.fromARGB(255, 206, 172, 122))),
       // This is the theme of your application.
       //
       // Try running your application with "flutter run". You'll see the
