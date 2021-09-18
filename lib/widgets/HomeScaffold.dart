@@ -74,7 +74,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     controller.addListener(_setSearchQueryText);
     searchServie.readSearches().then((List? value) {
       setState(() {
-        _lastSearches = Set.from(value!) ?? Set();
+        _lastSearches = Set.from(value!);
       });
     });
   }
@@ -130,7 +130,10 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var mw = 1000.0;
     return Container(
+      width: mw,
       child: Column(
         children: <Widget>[
           Container(
@@ -188,7 +191,6 @@ FutureBuilder<List<Product>> _showResultsBody(Future<List<Product>> handler) {
           }
           return ProductsWidget(snapshot.data);
       }
-      return null;
     },
   );
 }
