@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
@@ -28,7 +29,7 @@ class LastSearchService {
       String contents = await file.readAsString();
       return contents.split(',');
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
     return null;
   }
