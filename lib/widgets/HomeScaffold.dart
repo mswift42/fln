@@ -31,6 +31,7 @@ class HomeScaffold extends StatelessWidget {
 class SearchWidget extends StatefulWidget {
   const SearchWidget({Key? key}) : super(key: key);
 
+  @override
   _SearchWidgetState createState() => _SearchWidgetState();
 }
 
@@ -134,7 +135,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var mw = 1000.0;
-    return Container(
+    return SizedBox(
       width: mw,
       child: Column(
         children: <Widget>[
@@ -143,7 +144,8 @@ class _SearchWidgetState extends State<SearchWidget> {
               controller: controller,
               onSubmitted: _searchProduct,
             ),
-            padding: EdgeInsets.symmetric(vertical: 6.00, horizontal: 8.00),
+            padding:
+                const EdgeInsets.symmetric(vertical: 6.00, horizontal: 8.00),
           ),
           Wrap(
             children: [
@@ -183,10 +185,10 @@ FutureBuilder<List<Product>> _showResultsBody(Future<List<Product>> handler) {
     builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
       switch (snapshot.connectionState) {
         case ConnectionState.none:
-          return Container(child: Center(child: Text("Please try again.")));
+          return const Center(child: Text("Please try again."));
         case ConnectionState.active:
         case ConnectionState.waiting:
-          return Container(child: Center(child: CircularProgressIndicator()));
+          return const Center(child: CircularProgressIndicator());
         case ConnectionState.done:
           if (snapshot.hasError) {
             return Text("Something went wrong: ${snapshot.error}");

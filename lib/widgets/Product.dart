@@ -5,15 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 class ProductsWidget extends StatelessWidget {
   final List<Product>? products;
 
-  ProductsWidget(this.products);
+  const ProductsWidget(this.products);
 
   @override
   Widget build(BuildContext context) {
-    if (products!.length == 0) {
-      return Container(
-        child: Center(
-          child: Text("No results found :("),
-        ),
+    if (products!.isEmpty) {
+      return const Center(
+        child: Text("No results found :("),
       );
     }
     return GridView.extent(
@@ -27,7 +25,7 @@ class ProductsWidget extends StatelessWidget {
 class ProductWidget extends StatelessWidget {
   final Product product;
 
-  ProductWidget(this.product);
+  const ProductWidget(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class ProductWidget extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxHeight: 200.0,
                 ),
                 child: ProductImage(product.thumbnail)),
@@ -117,7 +115,7 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 4.0, bottom: 4.0),
+      margin: const EdgeInsets.only(top: 4.0, bottom: 4.0),
       child: Image.network(
         imageurl!,
         fit: BoxFit.contain,

@@ -2,7 +2,7 @@ import 'package:fln/widgets/HomeScaffold.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       // This makes the visual density adapt to the platform that you run
       // the app on. For desktop platforms, the controls will be smaller and
       // closer together (more dense) than on mobile platforms.
-      home: HomeScaffold(title: 'cexcheck'),
+      home: const HomeScaffold(title: 'cexcheck'),
     );
   }
 }
