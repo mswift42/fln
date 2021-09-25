@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 class HomeScaffold extends StatelessWidget {
   final String? title;
 
-  HomeScaffold({this.title});
+  const HomeScaffold({Key? key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class HomeScaffold extends StatelessWidget {
       appBar: AppBar(
         title: Text(title!),
       ),
-      body: Center(
+      body: const Center(
         child: SearchWidget(),
       ),
     );
@@ -29,6 +29,8 @@ class HomeScaffold extends StatelessWidget {
 }
 
 class SearchWidget extends StatefulWidget {
+  const SearchWidget({Key? key}) : super(key: key);
+
   _SearchWidgetState createState() => _SearchWidgetState();
 }
 
@@ -36,11 +38,11 @@ class _SearchWidgetState extends State<SearchWidget> {
   final LastSearchService searchServie = LastSearchService();
   Store? activeStore = _stores[0];
   String searchquery = "";
-  Set<String> _lastSearches = Set();
+  Set<String> _lastSearches = {};
   static final _stores = [
-    Store("Rose St.", "54"),
-    Store("Cam. Toll", "3017"),
-    Store("Leith", "3115")
+    const Store("Rose St.", "54"),
+    const Store("Cam. Toll", "3017"),
+    const Store("Leith", "3115")
   ];
   final controller = TextEditingController();
 
@@ -50,7 +52,7 @@ class _SearchWidgetState extends State<SearchWidget> {
       searchServie.writeSearches(_lastSearches.toList());
       var cs = CexSearch(query: searchquery, store: activeStore);
       Navigator.of(context).push(
-        new MaterialPageRoute(
+        MaterialPageRoute(
           builder: (context) => Scaffold(
             appBar: AppBar(
                 title: Text(
