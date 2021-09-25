@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class ProductsWidget extends StatelessWidget {
   final List<Product>? products;
 
-  const ProductsWidget(this.products);
+  const ProductsWidget(this.products, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class _ProductBottomLine extends StatelessWidget {
 class ProductImage extends StatelessWidget {
   final String? imageurl;
 
-  ProductImage(this.imageurl);
+  const ProductImage(this.imageurl, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

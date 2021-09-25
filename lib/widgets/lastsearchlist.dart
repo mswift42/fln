@@ -4,7 +4,9 @@ class LastSearchGrid extends StatelessWidget {
   final ValueChanged<String> onDeleted;
   final ValueChanged<String> onTapped;
   final List<String> _lastSearches;
-  LastSearchGrid(this.onDeleted, this.onTapped, this._lastSearches);
+  const LastSearchGrid(this.onDeleted, this.onTapped, this._lastSearches,
+      {Key? key})
+      : super(key: key);
 
   void _handleOnDelete(String value) {
     onDeleted(value);
@@ -16,14 +18,13 @@ class LastSearchGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Wrap(
+    return Wrap(
       spacing: 12.0,
       runSpacing: 4.0,
       children: _lastSearches
           .map((i) => LastSearchWidget(i, _handleOnDelete, _handleOnTap))
           .toList(),
-    ));
+    );
   }
 }
 
@@ -32,7 +33,8 @@ class LastSearchWidget extends StatelessWidget {
   final ValueChanged<String> onDeleted;
   final ValueChanged<String> onTapped;
 
-  LastSearchWidget(this.value, this.onDeleted, this.onTapped);
+  const LastSearchWidget(this.value, this.onDeleted, this.onTapped, {Key? key})
+      : super(key: key);
 
   void _handleOnDelete() {
     onDeleted(value);
@@ -44,15 +46,13 @@ class LastSearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Chip(
-        label: GestureDetector(
-          child: Text(value),
-          onTap: _handleTap,
-        ),
-        deleteIcon: Icon(Icons.delete),
-        onDeleted: _handleOnDelete,
+    return Chip(
+      label: GestureDetector(
+        child: Text(value),
+        onTap: _handleTap,
       ),
+      deleteIcon: const Icon(Icons.delete),
+      onDeleted: _handleOnDelete,
     );
   }
 }
