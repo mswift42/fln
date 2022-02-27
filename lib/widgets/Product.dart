@@ -18,8 +18,9 @@ class ProductsWidget extends StatelessWidget {
       );
     }
     return Container(
-      color: Colors.black87,
+      color: Colors.white,
       child: GridView.extent(
+        shrinkWrap: true,
           maxCrossAxisExtent: 300.0,
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 4.0,
@@ -105,7 +106,7 @@ class _ProductBottomLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
           product.condition,
@@ -137,6 +138,8 @@ class ProductImage extends StatelessWidget {
       child: Image.network(
         imageurl,
         fit: BoxFit.contain,
+        cacheHeight: 236,
+        cacheWidth: 186,
       ),
     );
   }
