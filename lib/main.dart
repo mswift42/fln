@@ -1,4 +1,4 @@
-import 'package:fln/widgets/HomeScaffold.dart';
+import 'package:fln/widgets/home_scaffold.dart';
 import 'package:flutter/material.dart';
 
 void main() {

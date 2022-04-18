@@ -5,7 +5,7 @@ import 'package:fln/cexsearch.dart';
 import 'package:fln/last_search.dart';
 import 'package:fln/product.dart';
 import 'package:fln/store.dart';
-import 'package:fln/widgets/Product.dart';
+import 'package:fln/widgets/product.dart';
 import 'package:fln/widgets/lastsearchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -133,7 +133,6 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     var mw = 1000.0;
     return SizedBox(
       width: mw,

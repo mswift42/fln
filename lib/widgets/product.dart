@@ -119,6 +119,8 @@ class ProductImage extends StatelessWidget {
       child: Image.network(
         imageurl!,
         fit: BoxFit.contain,
+        cacheHeight: 236,
+        cacheWidth: 186,
       ),
     );
   }
