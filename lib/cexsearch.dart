@@ -5,21 +5,29 @@ import 'package:fln/store.dart' show Store;
 import 'package:http/http.dart' as http;
 
 class CexSearch {
-  final String query;
-  final Store store;
+  final String? query;
+  final Store? store;
 
   CexSearch({this.query, this.store});
 
-  String url(String query, String storeid) {
-    return 'https://wss2.cex.uk.webuy.io/v3/boxes?q=$query&storeIds=[${store.id}]&firstRecord=1&count=50&sortBy=sellprice&sortOrder=desc';
+  Uri url(String? query, String? storeid) {
+    Uri uri = Uri.https('wss2.cex.uk.webuy.io', '/v3/boxes', {
+      'q': query,
+      'storeIds': '[${store!.id}]',
+      'firstRecord': '1',
+      'count': '50',
+      'sortBy': 'sellprice',
+      'sortOrder': 'desc'
+    });
+    return uri;
   }
 
-  String prodUrl(String id) {
-    return 'https://uk.webuy.com/product-detail?id=$id';
+  Uri prodUrl(String id) {
+    return Uri.https('uk.webuy.com', '/product-detail', {'id': id});
   }
 
   Future<List<Product>> fetchProduct() async {
-    final cu = url(query, store.id);
+    final cu = url(query, store!.id);
     final response = await http.get(cu);
 
     if (response.statusCode == 200) {

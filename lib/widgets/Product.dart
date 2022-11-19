@@ -4,13 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProductsWidget extends StatelessWidget {
-  final List<Product> products;
+  final List<Product>? products;
 
   ProductsWidget(this.products);
 
   @override
   Widget build(BuildContext context) {
-    if (products.length == 0) {
+    if (products!.isEmpty) {
       return Container(
         child: Center(
           child: Text("No results found :("),
@@ -24,7 +24,7 @@ class ProductsWidget extends StatelessWidget {
           maxCrossAxisExtent: 300.0,
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 4.0,
-          children: products.map((i) => ProductWidget(i)).toList()),
+          children: products!.map((i) => ProductWidget(i)).toList()),
     );
   }
 }
@@ -95,9 +95,9 @@ class ProductWidget extends StatelessWidget {
 
 class _ProductBottomLine extends StatelessWidget {
   const _ProductBottomLine({
-    Key key,
-    @required this.product,
-    @required this.textstyle,
+    Key? key,
+    required this.product,
+    required this.textstyle,
   }) : super(key: key);
 
   final Product product;
