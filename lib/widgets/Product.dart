@@ -45,6 +45,7 @@ class ProductWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => _launchUrl(product.url),
       child: Card(
+        color: Colors.black87,
           child: Stack(
         children: <Widget>[
           ProductImage(product.thumbnail),
@@ -137,7 +138,7 @@ class ProductImage extends StatelessWidget {
       margin: EdgeInsets.only(top: 4.0, bottom: 4.0),
       child: Image.network(
         imageurl,
-        fit: BoxFit.contain,
+        fit: BoxFit.fitWidth,
         cacheHeight: 236,
         cacheWidth: 186,
       ),
