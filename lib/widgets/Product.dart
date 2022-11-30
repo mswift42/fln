@@ -140,7 +140,7 @@ class ProductImage extends StatelessWidget {
         imageurl,
         fit: BoxFit.fitWidth,
         cacheHeight: 236,
-        cacheWidth: 186,
+        cacheWidth: 250,
       ),
     );
   }
